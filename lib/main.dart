@@ -85,13 +85,13 @@ class CalcAppState extends State<CalcApp> {
                     fillColor: 0xFF6C807F,
                     textColor: 0xFFFFE607,
                     textSize: 20,
-                    callback: numClick,
+                    callback: allClear,
                   ),
                   CalcButton(
                     text: "C",
                     fillColor: 0xFF6C807F,
                     textColor: 0xFFFFE607,
-                    callback: numClick,
+                    callback: clear,
                   ),
                   CalcButton(
                     text: "%",
