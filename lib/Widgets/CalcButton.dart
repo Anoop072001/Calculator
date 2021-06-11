@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CalcButton extends StatelessWidget {
   final String text;
+  final String operators;
   final int fillColor;
   final int textColor;
   final double textSize;
@@ -11,6 +12,7 @@ class CalcButton extends StatelessWidget {
     Key key,
     this.fillColor,
     this.text,
+    this.operators,
     this.textColor = 0xFFFFFFFF,
     this.textSize = 28,
     this.callback,
@@ -37,7 +39,7 @@ class CalcButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            callback(text);
+            callback(operators);
           },
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:calculator/Widgets/CalcButton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(CalcApp());
@@ -31,6 +32,18 @@ class CalcAppState extends State<CalcApp> {
   void clear(String text) {
     setState(() {
       _expression = '';
+    });
+  }
+
+  void evaluate(String text) {
+    Parser p = Parser();
+    Expression exp = p.parse(_expression);
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+
+    setState(() {
+      _history = _expression;
+      _expression = eval.toString();
     });
   }
 
@@ -82,6 +95,7 @@ class CalcAppState extends State<CalcApp> {
                 children: [
                   CalcButton(
                     text: "AC",
+                    operators: "AC",
                     fillColor: 0xFF6C807F,
                     textColor: 0xFFFFE607,
                     textSize: 20,
@@ -89,18 +103,21 @@ class CalcAppState extends State<CalcApp> {
                   ),
                   CalcButton(
                     text: "C",
+                    operators: "C",
                     fillColor: 0xFF6C807F,
                     textColor: 0xFFFFE607,
                     callback: clear,
                   ),
                   CalcButton(
                     text: "%",
+                    operators: "%",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "/",
+                    operators: "/",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     callback: numClick,
@@ -112,21 +129,25 @@ class CalcAppState extends State<CalcApp> {
                 children: [
                   CalcButton(
                     text: "7",
+                    operators: "7",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "8",
+                    operators: "8",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "9",
+                    operators: "9",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "x",
+                    operators: "*",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     textSize: 24,
@@ -139,21 +160,25 @@ class CalcAppState extends State<CalcApp> {
                 children: [
                   CalcButton(
                     text: "4",
+                    operators: "4",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "5",
+                    operators: "5",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "6",
+                    operators: "6",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "-",
+                    operators: "-",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     textSize: 30,
@@ -166,21 +191,25 @@ class CalcAppState extends State<CalcApp> {
                 children: [
                   CalcButton(
                     text: "1",
+                    operators: "1",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "2",
+                    operators: "2",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "3",
+                    operators: "3",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "+",
+                    operators: "+",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     textSize: 30,
@@ -193,26 +222,30 @@ class CalcAppState extends State<CalcApp> {
                 children: [
                   CalcButton(
                     text: ".",
+                    operators: ".",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "0",
+                    operators: "0",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                   ),
                   CalcButton(
                     text: "00",
+                    operators: "00",
                     textColor: 0xFFFFE607,
                     callback: numClick,
                     textSize: 26,
                   ),
                   CalcButton(
                     text: "=",
+                    operators: "=",
                     fillColor: 0xFFFFFFFF,
                     textColor: 0xFFFFE607,
                     textSize: 30,
-                    callback: numClick,
+                    callback: evaluate,
                   ),
                 ],
               ),
