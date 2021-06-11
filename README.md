@@ -10,5 +10,3 @@ A simple calculator app made on Flutter.
   <li>Division<\li>
   <li>Modulus<\li>
 <\ol>    
-# Reference
-  https://youtu.be/Tt_rNK1DT3k
