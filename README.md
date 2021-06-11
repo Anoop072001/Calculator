@@ -9,4 +9,4 @@ A simple calculator app made on Flutter.
   <li>Multiplication<\li>
   <li>Division<\li>
   <li>Modulus<\li>
-<\ol>    
+    <\ol>    
